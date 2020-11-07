@@ -49,7 +49,7 @@ namespace FSMMSG
 
         public override bool OnMessage(Miner miner, Telegram msg)
         {
-            switch(msg.Msg)
+            switch (msg.Msg)
             {
                 case message_type.Msg_StewReady:
                     Debug.Log("Message received by " + miner.GetNameOfEntity() + " at time: " + Clock.GetCurrentTime());
@@ -231,18 +231,18 @@ namespace FSMMSG
 
         public override void Enter(Miner miner)
         {
-            Debug.Log(miner.GetNameOfEntity() + ": Smells Reaaal goood Elsa!");
+            Debug.Log(miner.GetNameOfEntity() + ": 啊闻起来好臭！");
         }
 
         public override void Execute(Miner miner)
         {
-            Debug.Log(miner.GetNameOfEntity() + ": Tastes real good too!");
+            Debug.Log(miner.GetNameOfEntity() + ": 吃起来更臭！");
             miner.GetFSM().RevertToPreviousState();
         }
 
         public override void Exit(Miner miner)
         {
-            Debug.Log(miner.GetNameOfEntity() + ": Thankya li'lle lady. Ah better get back to whatever ah wuz doin'.");
+            Debug.Log(miner.GetNameOfEntity() + ": 哦谢谢你我的上帝！治好了我的便秘！");
         }
 
         public override bool OnMessage(Miner entity, Telegram msg)

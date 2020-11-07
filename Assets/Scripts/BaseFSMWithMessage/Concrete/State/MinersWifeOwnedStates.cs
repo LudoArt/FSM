@@ -42,7 +42,7 @@ namespace FSMMSG
                 case message_type.Msg_HiHoneyImHome:
                     {
                         Debug.Log("Message handled by " + wife.GetNameOfEntity() + " at time: " + Clock.GetCurrentTime());
-                        Debug.Log(wife.GetNameOfEntity() + ": Hi honey. Let me make you some of mah fine country stew.");
+                        Debug.Log(wife.GetNameOfEntity() + ": 徐子杨回来了，大傻逼属性发动。");
 
                         wife.GetFSM().ChangeState(CookStew.GetInstance());
                     }
@@ -72,7 +72,7 @@ namespace FSMMSG
 
         public override void Enter(MinersWife wife)
         {
-            Debug.Log(wife.GetNameOfEntity() + ": Time to do some more housework!");
+            Debug.Log(wife.GetNameOfEntity() + ": 是时候开始收拾屋子了。");
         }
 
         public override void Execute(MinersWife wife)
@@ -80,13 +80,13 @@ namespace FSMMSG
             switch (Random.Range(0, 2))
             {
                 case 0:
-                    Debug.Log(wife.GetNameOfEntity() + ": Moppin' the floor.");
+                    Debug.Log(wife.GetNameOfEntity() + ": 擦地板。");
                     break;
                 case 1:
-                    Debug.Log(wife.GetNameOfEntity() + ": Washin' the dishes.");
+                    Debug.Log(wife.GetNameOfEntity() + ": 洗盘子。");
                     break;
                 case 2:
-                    Debug.Log(wife.GetNameOfEntity() + ": Makin' the bed.");
+                    Debug.Log(wife.GetNameOfEntity() + ": 暖床？！");
                     break;
             }
         }
@@ -119,18 +119,18 @@ namespace FSMMSG
 
         public override void Enter(MinersWife wife)
         {
-            Debug.Log(wife.GetNameOfEntity() + ": Walkin' to the can. Need to powda mah pretty li'lle nose.");
+            Debug.Log(wife.GetNameOfEntity() + ": 去上厕所了。");
         }
 
         public override void Execute(MinersWife wife)
         {
-            Debug.Log(wife.GetNameOfEntity() + ": Ahhhhhh! Sweet relief!");
+            Debug.Log(wife.GetNameOfEntity() + ": 拉屎好爽。");
             wife.GetFSM().RevertToPreviousState();
         }
 
         public override void Exit(MinersWife wife)
         {
-            Debug.Log(wife.GetNameOfEntity() + ": Leavin' the Jon.");
+            Debug.Log(wife.GetNameOfEntity() + ":菊花又出血了。");
         }
 
         public override bool OnMessage(MinersWife wife, Telegram msg)
@@ -159,7 +159,7 @@ namespace FSMMSG
         {
             if (!wife.Cooking())
             {
-                Debug.Log(wife.GetNameOfEntity() + ": Putting the stew in the oven.");
+                Debug.Log(wife.GetNameOfEntity() + ": 开始做饭了。");
 
                 // 给自己发一个延迟消息
                 MessageDispatcher.GetInstance().DispatchMessage(1.5f, wife.ID(), wife.ID(), message_type.Msg_StewReady);
@@ -171,12 +171,12 @@ namespace FSMMSG
 
         public override void Execute(MinersWife wife)
         {
-            Debug.Log(wife.GetNameOfEntity() + ": Fussin' over food.");
+            Debug.Log(wife.GetNameOfEntity() + ": 做饭中...");
         }
 
         public override void Exit(MinersWife wife)
         {
-            Debug.Log(wife.GetNameOfEntity() + ": Puttin' the stew on the table.");
+            Debug.Log(wife.GetNameOfEntity() + ": 把做完的黑暗料理摆桌上。");
         }
 
         public override bool OnMessage(MinersWife wife, Telegram msg)
@@ -185,7 +185,7 @@ namespace FSMMSG
             {
                 case message_type.Msg_StewReady:
                     Debug.Log("Message received by " + wife.GetNameOfEntity() + " at time: " + Clock.GetCurrentTime());
-                    Debug.Log(wife.GetNameOfEntity() + ": StewReady! Lets eat.");
+                    Debug.Log(wife.GetNameOfEntity() + ": 饭好了！快来恰饭！");
 
                     //let hubby know the stew is ready
                     MessageDispatcher.GetInstance().DispatchMessage(0, wife.ID(), 0, message_type.Msg_StewReady);
